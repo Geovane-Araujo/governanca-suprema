@@ -1,7 +1,6 @@
 package com.potatotech.screem;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,20 +10,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.potatotech.Main;
 
 
-public class InitilGame implements Screen {
+public class InitialGame implements Screen {
 
     private SpriteBatch batch;
     private Texture backgroundImage;
-
+    private Main main;
     private Stage stage;
     private Skin skin;
 
 
-    public InitilGame() {
+    public InitialGame(Main main) {
         batch = new SpriteBatch();
         backgroundImage = new Texture("gov.jpeg");
+        this.main = main;
     }
 
     @Override
@@ -43,8 +44,8 @@ public class InitilGame implements Screen {
 
         newGameButton.addListener(event -> {
             if (newGameButton.isPressed()) {
-                // Ação para iniciar um novo jogo
                 System.out.println("Novo Jogo Iniciado");
+                this.main.setScreen(new NewGame());
                 return true;
             }
             return false;
